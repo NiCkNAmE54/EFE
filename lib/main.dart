@@ -66,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onChanged: (value) {
                       setState(() {
                         currency = value;
+                        sumbitPressed = false;
                       });
                     }),
                 Text("dialcode: "),
@@ -74,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onChanged: (value) {
                       setState(() {
                         dialcode = value;
+                        sumbitPressed = false;
                       });
                     }),
                 Text("flag: "),
@@ -82,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onChanged: (value) {
                       setState(() {
                         flag = value;
+                        sumbitPressed = false;
                       });
                     }),
                 TextButton(
@@ -99,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (flag ?? false) {
                         columns.add('flag');
                       }
+                      print('columns: '  + columns.join(",").toString());
                     });
                   },
                 )
@@ -116,15 +120,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       (BuildContext context, AsyncSnapshot<String> snapshot) {
                     if (snapshot.hasData) {
                       List<Card> cards = [];
-                      json.decode(snapshot.data ?? "[]")["data"].forEach((el) {
-                        return cards.add(Card(
+                      (json.decode(snapshot.data ?? "[]")["data"] ?? []).forEach((el) {
+                        cards.add(Card(
                             child: ListTile(
                                 title: Text(el['name'] ?? ""),
                                 subtitle: Text("currency: " +
                                     (el['currency'] ?? "") +
                                     "\ndialcode: " +
                                     (el['dialcode'] ?? "")),
-                                trailing: SvgPicture.network(
+                                trailing: el['flag'] == null? null: SvgPicture.network(
                                   el['flag'] ?? "",
                                   semanticsLabel: 'Flag',
                                   width: 80,
