@@ -35,13 +35,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool? currency;
-  bool? dialcode;
+  bool? dialCode;
   bool? flag;
   bool? sumbitPressed;
   void initState() {
     super.initState();
     currency = false;
-    dialcode = false;
+    dialCode = false;
     flag = false;
     sumbitPressed = false;
   }
@@ -69,12 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         sumbitPressed = false;
                       });
                     }),
-                Text("dialcode: "),
+                Text("dialCode: "),
                 Checkbox(
-                    value: dialcode,
+                    value: dialCode,
                     onChanged: (value) {
                       setState(() {
-                        dialcode = value;
+                        dialCode = value;
                         sumbitPressed = false;
                       });
                     }),
@@ -96,8 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (currency ?? false) {
                         columns.add('currency');
                       }
-                      if (dialcode ?? false) {
-                        columns.add('dialcode');
+                      if (dialCode ?? false) {
+                        columns.add('dialCode');
                       }
                       if (flag ?? false) {
                         columns.add('flag');
@@ -126,8 +126,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 title: Text(el['name'] ?? ""),
                                 subtitle: Text("currency: " +
                                     (el['currency'] ?? "") +
-                                    "\ndialcode: " +
-                                    (el['dialcode'] ?? "")),
+                                    "\ndialCode: " +
+                                    (el['dialCode'] ?? "")),
                                 trailing: el['flag'] == null? null: SvgPicture.network(
                                   el['flag'] ?? "",
                                   semanticsLabel: 'Flag',
